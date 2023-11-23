@@ -2,6 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "TasksMERN",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
@@ -14,7 +15,9 @@
   "author": "Kevin Martinez Escorcia",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^8.0.1"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
