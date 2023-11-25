@@ -21,15 +21,10 @@ const tareaSchema = mongoose.Schema(
       required: true,
       default: Date.now(),
     },
-    priopridad: {
-      type: String,
-      required: true,
-      default: Date.now(),
-    },
     prioridad: {
       type: String,
       required: true,
-      enum: ["Baja", "Media", "Babaja"],
+      enum: ["Baja", "Media", "Alta"],
     },
     proyecto: {
       type: mongoose.Schema.Types.ObjectId,
