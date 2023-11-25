@@ -11,7 +11,7 @@ const conectarDB = async () => {
     );
 
     const url = `${connection.connection.host}:${connection.connection.port}`;
-    console.log(`MongoDB conectado en: ${url}`);
+    console.log(`BD conectada en: ${url}`);
   } catch (error) {
     console.log(`error: ${error.message}`);
     process.exit(1);

@@ -5,17 +5,17 @@ const usuarioSchema = mongoose.Schema(
   {
     nombre: {
       type: String,
-      require: true,
+      required: true,
       trim: true,
     },
     password: {
       type: String,
-      require: true,
+      required: true,
       trim: true,
     },
     email: {
       type: String,
-      require: true,
+      required: true,
       trim: true,
       unique: true,
     },
@@ -31,7 +31,6 @@ const usuarioSchema = mongoose.Schema(
     timestamps: true,
   }
 );
-
 usuarioSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     next();
@@ -45,5 +44,4 @@ usuarioSchema.methods.comprobarPassword = async function (passwordFormulario) {
 };
 
 const Usuario = mongoose.model("Usuario", usuarioSchema);
-
 export default Usuario;

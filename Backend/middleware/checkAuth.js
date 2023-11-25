@@ -1,4 +1,4 @@
-import jwt, { decode } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import Usuario from "../models/Usuario.js";
 
 const checkAuth = async (req, res, next) => {
@@ -11,6 +11,7 @@ const checkAuth = async (req, res, next) => {
       token = req.headers.authorization.split(" ")[1];
 
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
       req.usuario = await Usuario.findById(decoded.id).select(
         "-password -confirmado -token -createdAt -updatedAt -__v"
       );
@@ -22,7 +23,7 @@ const checkAuth = async (req, res, next) => {
   }
 
   if (!token) {
-    const error = new Error("Token no valido");
+    const error = new Error("Token no válido");
     return res.status(401).json({ msg: error.message });
   }
 

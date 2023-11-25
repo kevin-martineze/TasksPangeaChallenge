@@ -30,6 +30,11 @@ const tareaSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Proyecto",
     },
+    completado: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Usuario",
+      default: null,
+    },
   },
   {
     timestamps: true,
@@ -37,5 +42,4 @@ const tareaSchema = mongoose.Schema(
 );
 
 const Tarea = mongoose.model("Tarea", tareaSchema);
-
 export default Tarea;
