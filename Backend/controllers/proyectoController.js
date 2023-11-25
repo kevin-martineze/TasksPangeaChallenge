@@ -1,3 +1,4 @@
+import Tarea from "../models/Tarea.js";
 import Proyecto from "./../models/Proyecto.js";
 
 const obtenerProyectos = async (req, res) => {
@@ -27,12 +28,16 @@ const obtenerProyecto = async (req, res) => {
     return res.status(404).json({ msg: error.message });
   }
 
-  if (proyecto.creador.toString() === req.usuario._id.toString()) {
+  if (proyecto.creador.toString() !== req.usuario._id.toString()) {
     const error = new Error("Accion no valida");
     return res.status(401).json({ msg: error.message });
   }
 
-  res.json(proyecto);
+  const tareas = await Tarea.find().where("proyecto").equals(proyecto._id);
+  res.json({
+    proyecto,
+    tareas,
+  });
 };
 
 const editarProyecto = async (req, res) => {
@@ -90,8 +95,6 @@ const agregarColaborador = async (req, res) => {};
 
 const eliminarColaborador = async (req, res) => {};
 
-const obtenerTareas = async (req, res) => {};
-
 export {
   obtenerProyectos,
   nuevoProyecto,
@@ -100,5 +103,4 @@ export {
   eliminarProyecto,
   agregarColaborador,
   eliminarColaborador,
-  obtenerTareas,
 };
